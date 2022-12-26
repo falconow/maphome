@@ -29,5 +29,5 @@ public class Home {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
             @JoinColumn(name = "home_id")
             @Fetch(FetchMode.SUBSELECT)
-    List<Room> roomList;
+    List<Entrance> entrancesList;
 }

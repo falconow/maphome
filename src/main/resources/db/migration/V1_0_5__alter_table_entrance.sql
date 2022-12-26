@@ -1,0 +1,1 @@
+ALTER TABLE entrance ADD COLUMN entrance_number BIGINT;

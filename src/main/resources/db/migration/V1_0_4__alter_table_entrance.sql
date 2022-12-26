@@ -1,0 +1,3 @@
+ALTER TABLE entrance DROP COLUMN floor;
+
+ALTER TABLE entrance ADD COLUMN floor BIGINT;
