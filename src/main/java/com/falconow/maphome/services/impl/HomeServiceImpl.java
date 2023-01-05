@@ -1,6 +1,7 @@
 package com.falconow.maphome.services.impl;
 
 import com.falconow.maphome.entities.Entrance;
+import com.falconow.maphome.entities.Floor;
 import com.falconow.maphome.entities.Home;
 import com.falconow.maphome.repositories.HomeRepository;
 import com.falconow.maphome.services.HomeService;
@@ -30,6 +31,29 @@ public class HomeServiceImpl implements HomeService {
             Home home = new Home();
             home.setStreet("Советская");
             home.setHome("59А");
+
+            List<Entrance> entranceList = new ArrayList<>();
+
+            int start_flat = 0;
+            for(int i = 1; i<6; i++) {
+                Entrance entrance = new Entrance();
+                entrance.setEntrance_number(i);
+                List<Floor> floorList = new ArrayList<>();
+                for(int f = 1; f < 10; f++) {
+                    Floor floor = new Floor();
+                    floor.setFloor_number(f);
+                    floor.setFlatList(IntStream.rangeClosed(start_flat+1, start_flat + 6)
+                            .mapToObj(String::valueOf)
+                            .collect(Collectors.toList()));
+                    floorList.add(floor);
+                    start_flat+=5;
+                }
+                entrance.setFloorList(floorList);
+                entranceList.add(entrance);
+            }
+
+            home.setEntrancesList(entranceList);
+
             homeRepository.save(home);
         }
     }

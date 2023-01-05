@@ -18,16 +18,16 @@ import java.util.List;
 public class Home {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
     @Column(name = "street_name")
-    public String street;
+    private String street;
 
     @Column(name = "number_home")
-    public String home;
+    private String home;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-            @JoinColumn(name = "home_id")
-            @Fetch(FetchMode.SUBSELECT)
-    List<Entrance> entrancesList;
+    @JoinColumn(name = "home_id")
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Entrance> entrancesList;
 }

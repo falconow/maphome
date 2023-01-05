@@ -1,16 +1,13 @@
 package com.falconow.maphome.entities;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OrderColumn;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -29,18 +26,19 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "entrance")
-public class Entrance {
+@Table(name = "floor")
+public class Floor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "entrance_number")
-    private Integer entrance_number;
+    @Column(name = "floor_number")
+    private Integer floor_number;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "entrance_id")
+    @ElementCollection
+    @CollectionTable(name = "floor_flats", joinColumns = @JoinColumn(name = "floor_id"))
+    @OrderColumn(name = "order_id")
+    @Column(name = "flats")
     @Fetch(FetchMode.SUBSELECT)
-    private List<Floor> floorList;
-
+    private List<String> flatList;
 }
