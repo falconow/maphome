@@ -31,5 +31,11 @@ public class ExampleController {
         return new ResponseEntity<>(result, HttpStatusCode.valueOf(200));
     }
 
+    @GetMapping("/home")
+    public ResponseEntity<Home> get_home() {
+        List<Home> result = homeService.getAll();
+        return new ResponseEntity<>(result.stream().findFirst().orElse(null), HttpStatusCode.valueOf(200));
+    }
+
 
 }
