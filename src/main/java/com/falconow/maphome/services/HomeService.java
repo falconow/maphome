@@ -7,4 +7,5 @@ import java.util.List;
 public interface HomeService {
     List<Home> getAll();
     Home findById(Long id);
+    Home findByStreetAndHome(String street, String home);
 }

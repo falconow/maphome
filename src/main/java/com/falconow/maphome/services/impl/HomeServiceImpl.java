@@ -67,4 +67,9 @@ public class HomeServiceImpl implements HomeService {
     public Home findById(Long id) {
         return homeRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public Home findByStreetAndHome(String street, String home) {
+        return homeRepository.findHomeByStreetAndAndHome(street, home).orElse(null);
+    }
 }
