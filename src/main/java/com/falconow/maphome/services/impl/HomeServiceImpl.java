@@ -42,7 +42,7 @@ public class HomeServiceImpl implements HomeService {
                 for(int f = 1; f < 10; f++) {
                     Floor floor = new Floor();
                     floor.setFloor_number(f);
-                    floor.setFlatList(IntStream.rangeClosed(start_flat+1, start_flat + 6)
+                    floor.setFlatList(IntStream.rangeClosed(start_flat+1, start_flat + 5)
                             .mapToObj(String::valueOf)
                             .collect(Collectors.toList()));
                     floorList.add(floor);
